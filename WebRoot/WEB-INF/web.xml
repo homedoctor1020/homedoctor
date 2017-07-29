@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+	<!-- 项目配置 -->
+	<servlet>
+		<servlet-name>CheckManagerServlet</servlet-name>
+		<servlet-class>com.dw.controll.CheckManagerServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>showAllStudentsServlet</servlet-name>
+		<servlet-class>com.dw.controll.ShowAllServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AddStudentServlet</servlet-name>
+		<servlet-class>com.dw.controll.AddServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>DelStudentServlet</servlet-name>
+		<servlet-class>com.dw.controll.DeleteServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UpdateStudentServlet</servlet-name>
+		<servlet-class>com.dw.controll.UpdateServlet</servlet-class>
+	</servlet>
+    <servlet>
+		<servlet-name>PreServlet</servlet-name>
+		<servlet-class>com.dw.controll.PreServlet</servlet-class>
+	</servlet>
+	<servlet>
+       <servlet-name>LoginServlet</servlet-name>
+       <servlet-class>com.dw.controll.LoginServlet</servlet-class>
+   </servlet>
+  <servlet>
+    <servlet-name>SearchByIdServlet</servlet-name>
+    <servlet-class>com.dw.controll.SearchByIdServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UploadHandleServlet</servlet-name>
+    <servlet-class>com.dw.controll.UploadHandleServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ListFileServlet</servlet-name>
+    <servlet-class>com.dw.controll.ListFileServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DownLoadServlet</servlet-name>
+    <servlet-class>com.dw.controll.DownLoadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>WeixinServlet</servlet-name>
+    <servlet-class>com.weixin.WeixinServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddYyServlet</servlet-name>
+    <servlet-class>com.dw.controll.AddYyServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowAllYuyues</servlet-name>
+    <servlet-class>com.dw.controll.ShowAllYuyues</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+	<!-- mapping映射 -->
+<!-- 	<servlet-mapping>
+		<servlet-name>CheckManagerServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping> -->
+	<servlet-mapping>
+		<servlet-name>showAllStudentsServlet</servlet-name>
+		<url-pattern>/showAllStudents</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddStudentServlet</servlet-name>
+		<url-pattern>/stadd</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DelStudentServlet</servlet-name>
+		<url-pattern>/stdelete</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateStudentServlet</servlet-name>
+		<url-pattern>/stupdate</url-pattern>
+	</servlet-mapping>
+    <servlet-mapping>
+		<servlet-name>PreServlet</servlet-name>
+		<url-pattern>/pre</url-pattern>
+	</servlet-mapping>
+   <servlet-mapping>
+      <servlet-name>LoginServlet</servlet-name>
+      <url-pattern>/login</url-pattern>
+   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SearchByIdServlet</servlet-name>
+    <url-pattern>/searchById</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UploadHandleServlet</servlet-name>
+    <url-pattern>/servlet/UploadHandleServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ListFileServlet</servlet-name>
+    <url-pattern>/servlet/ListFileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DownLoadServlet</servlet-name>
+    <url-pattern>/servlet/DownLoadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>WeixinServlet</servlet-name>
+    <url-pattern>/servlet/WeixinServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>AddYyServlet</servlet-name>
+    <url-pattern>/AddYyServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowAllYuyues</servlet-name>
+    <url-pattern>/showAllYuyues</url-pattern>
+  </servlet-mapping>
+	<!-- filter过滤器解决中文乱码 -->
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>com.dw.filter.EncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!--CheckLoginFilter用于解决安全登录  --><!--
+	<filter>
+		<filter-name>login</filter-name>
+		<filter-class>com.dw.filter.CheckFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>login</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+--></web-app>
