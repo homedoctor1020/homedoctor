@@ -8,10 +8,6 @@
 	</welcome-file-list>
 	<!-- 项目配置 -->
 	<servlet>
-		<servlet-name>CheckManagerServlet</servlet-name>
-		<servlet-class>com.dw.controll.CheckManagerServlet</servlet-class>
-	</servlet>
-	<servlet>
 		<servlet-name>showAllStudentsServlet</servlet-name>
 		<servlet-class>com.dw.controll.ShowAllServlet</servlet-class>
 	</servlet>
@@ -161,4 +157,12 @@
 		<filter-name>login</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
---></web-app>
+-->
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>com.dw.controll.UploadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping></web-app>

@@ -28,7 +28,7 @@ public class StudentDaoImpl implements StudentDao {
 	 */
 	public Student findStudentByid(int id) {
 		Student stu = null;
-		String sql = "select * from Student2 where stId=?";
+		String sql = "select * from t_vip where stId=?";
 		try {
 			PreparedStatement psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, id);
