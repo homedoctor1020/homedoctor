@@ -1,4 +1,4 @@
-package com.dw.controll;
+/*package com.dw.controll;
 
 import java.io.IOException;
 
@@ -8,14 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dw.dao.StudentDao;
+import com.dw.dao.VipDao;
 import com.dw.dao.impl.StudentDaoImpl;
+import com.dw.dao.impl.VipDaoImpl;
 import com.dw.model.Student;
 
-/**
+*//**
  * 控制层 -添加 逻辑处理
   @author DY1101shaoyuxian
  * 
- */
+ *//*
 public class AddServlet extends HttpServlet {
 
 
@@ -37,8 +39,8 @@ public class AddServlet extends HttpServlet {
 		String stAddress = request.getParameter("stAddress");
 		Student stu = new Student(stName, stSex, stAge, stTel, stDept,
 				stAddress);
-		StudentDao studao = new StudentDaoImpl();
-		boolean flag = studao.addStudent(stu);
+		VipDao dao = new VipDaoImpl();
+		boolean flag = dao.addVip(vip);
 		if (flag && !(stTel == null) && !"".equals(stTel)) {
 			request.setAttribute("msg", "添加成功!!");
 			request.getRequestDispatcher("main.jsp").forward(request,
@@ -52,3 +54,4 @@ public class AddServlet extends HttpServlet {
 	}
 
 }
+*/

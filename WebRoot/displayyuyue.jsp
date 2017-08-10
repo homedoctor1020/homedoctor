@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*,com.dw.model.Student"
+<%@ page language="java" import="java.util.*,com.dw.model.Vip"
 	pageEncoding="utf-8"%>
 <%@ page import="com.dw.dao.impl.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>

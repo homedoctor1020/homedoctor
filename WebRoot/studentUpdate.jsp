@@ -1,5 +1,5 @@
-<%@ page language="java" import="java.util.*,com.dw.model.Student" pageEncoding="utf-8"%>
-<%@ page import="com.dw.dao.StudentDao"%>
+<%@ page language="java" import="java.util.*,com.dw.model.Vip" pageEncoding="utf-8"%>
+<%@ page import="com.dw.dao.VipDao"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();

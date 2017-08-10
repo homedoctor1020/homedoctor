@@ -1,9 +1,8 @@
 package com.dw.util;
 
 
-/**
- * 工具类
- * @author DY1101shaoyuxian
+/**检查字符串是否为空
+ * @author crossnote
  *
  */
 public class StringUtil {

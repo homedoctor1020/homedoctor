@@ -34,11 +34,11 @@
 					<div class="navbar-inner">
 					   <a class="brand" href="main.jsp"><i class="icon-home"></i>&nbsp;首页</a>
 						<ul class="nav">
-							<li><a href="pre?method=studentAdd"><i class="icon-pencil"></i>&nbsp;添加患者信息 </a></li>
+							<!-- <li><a href="pre?method=studentAdd"><i class="icon-pencil"></i>&nbsp;添加患者信息 </a></li> -->
 							<li><a href="showAllStudents"><i class="icon-book"></i>&nbsp;患者信息维护 </a></li>
 							<li><a href="showAllYuyues"><i class="icon-book"></i>&nbsp;查看预约信息 </a></li>
 							<li><a href="pre?method=preupdatetepwd"><i class=" icon-cog"></i>&nbsp;修改密码</a></li>
-							<li><a href="upload"><i class=" icon-cog"></i>&nbsp;上传文件</a></li>
+							<!-- <li><a href="upload"><i class=" icon-cog"></i>&nbsp;上传文件</a></li> -->
 							<li><a onclick="check()"><i class="icon-user"></i>&nbsp;退出系统</a></li>
 						</ul>
 					</div>

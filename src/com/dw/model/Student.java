@@ -1,11 +1,11 @@
-package com.dw.model;
+/*package com.dw.model;
 
-/**
+*//**
  * 学生实体类
  * 
  * @author DY1101shaoyuxian
  * 
- */
+ *//*
 public class Student {
 
 	private int stId;// 学号
@@ -97,3 +97,4 @@ public class Student {
 	}
    
 }
+*/

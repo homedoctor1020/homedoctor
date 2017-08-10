@@ -8,11 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dw.dao.StudentDao;
 import com.dw.dao.YuyueDao;
-import com.dw.dao.impl.StudentDaoImpl;
 import com.dw.dao.impl.YuyueDaoImpl;
-import com.dw.model.Student;
 import com.dw.model.Yuyue;
 
 public class AddYyServlet extends HttpServlet {

@@ -20,26 +20,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	 <style type="text/css">
+       input[type="text"]{
+              height: auto;
+	          margin-bottom: 15px;
+	          padding: 3px 9px;
+            }
+            .user_img{
+            width: 48px;
+            height: 48px;
+            }
+     </style>
 
   </head>
   
   <body>
-  <c:if test="${not empty student }">
-  <table  class="table table-hover table-condensed">
+  <c:if test="${not empty list }">
+ <table  class="table table-hover table-condensed">
 		    <tr>
 				<td align="center">
 					<strong>编号</strong>
 				</td>
 				<td align="center">
-					<strong>姓名</strong>
+					
+				</td>
+				<td align="center">
+					<strong>微信昵称</strong>
 				</td>
 				<td align="center">
 					<strong>性别</strong>
 				</td>
 				<td align="center">
-					<strong>年龄</strong>
+					<strong>城市</strong>
 				</td>
-				<td align="center">
+				<!-- <td align="center">
 					<strong>电话</strong>
 				</td>
 				<td align="center">
@@ -47,25 +61,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</td>
 				<td align="center">
 					<strong>地址</strong>
-				</td>
+				</td> -->
 				<td align="center" >
 					<strong>执行操作</strong>
 				</td>
 			</tr>
+			<c:forEach items="${list}" var="vip" varStatus="status">
 				<tr>
 					<td>
-						<c:out value="${student.stId}" />
+						<c:out value="${ status.index + 1}" />
 					</td>
 					<td>
-						<c:out value="${student.stName}" />
+						<img class="user_img" src="${vip.headImgUrl}">
 					</td>
 					<td>
-						<c:out value="${student.stSex}" />
+						<c:out value="${vip.nickname}" />
 					</td>
 					<td>
-						<c:out value="${student.stAge}" />
+						<c:if test="${vip.sex==1}" >
+						男
+						</c:if>
+						<c:if test="${vip.sex==2}" >
+						女
+						</c:if>
+						<c:if test="${vip.sex==0}" >
+						未知
+						</c:if>
 					</td>
 					<td>
+						<c:out value="${vip.city}" />
+					</td>
+					<%-- <td>
 						<c:out value="${student.stTel}" />
 					</td>
 					<td>
@@ -73,17 +99,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td>
 						<c:out value="${student.stAddress}" />
-					</td>
+					</td> --%>
 					<td>
-						<a href="stdelete?id=${student.stId}" class="btn btn-danger">删除</a>
-						<a href="pre?method=updateStudent&id=${student.stId}" class="btn btn-primary">更新</a>
+						<a href="stdelete?id=${vip.openId}" class="btn btn-danger">删除</a>
+						<a href="pre?method=updateStudent&id=${vip.openId}" class="btn btn-primary">更新</a>
 					</td>
 				</tr>
-	
+			</c:forEach>
 		</table>
 </c:if >
-<c:if test="${empty student }">
-        <center><font color="red" size="+1">对不起！没有该编号对应的患者....</font></center>
+<c:if test="${empty list }">
+        <center><font color="red" size="+1">对不起！没有对应的患者....</font></center>
 </c:if>
 		<hr>
 		<a href="main.jsp" class="btn btn-success">返回主菜单</a>

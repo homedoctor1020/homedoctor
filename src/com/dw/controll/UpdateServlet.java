@@ -1,4 +1,4 @@
-package com.dw.controll;
+/*package com.dw.controll;
 
 import java.io.IOException;
 
@@ -11,16 +11,16 @@ import com.dw.dao.StudentDao;
 import com.dw.dao.impl.StudentDaoImpl;
 import com.dw.model.Student;
 
-/**
+*//**
  *  控制层 -更新逻辑处理
  * @author DY1101shaoyuxian
  * 
- */
+ *//*
 public class UpdateServlet extends HttpServlet {
 
-	/**
+	*//**
 	 * 
-	 */
+	 *//*
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -53,3 +53,4 @@ public class UpdateServlet extends HttpServlet {
 	}
 
 }
+*/

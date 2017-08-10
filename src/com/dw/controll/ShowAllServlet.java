@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dw.dao.impl.StudentDaoImpl;
+import com.dw.dao.impl.VipDaoImpl;
 
 public class ShowAllServlet extends HttpServlet {
 
@@ -31,8 +31,8 @@ public class ShowAllServlet extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		StudentDaoImpl studao = new StudentDaoImpl();
-		List list = studao.StSelect();
+		VipDaoImpl dao = new VipDaoImpl();
+		List list = dao.vipSelect();
 		String mainPage="displaystudent.jsp";
 		request.setAttribute("list", list);
 		request.setAttribute("mainPage", mainPage);

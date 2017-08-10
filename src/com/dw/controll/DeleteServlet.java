@@ -1,4 +1,4 @@
-package com.dw.controll;
+/*package com.dw.controll;
 
 import java.io.IOException;
 
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dw.dao.StudentDao;
 import com.dw.dao.impl.StudentDaoImpl;
-/**
+*//**
  * 控制层-删除业务逻辑处理 
  * @author DY1101shaoyuxian
  *
- */
+ *//*
 public class DeleteServlet extends HttpServlet {
 
-	/**
+	*//**
 	 * 
-	 */
+	 *//*
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -44,3 +44,4 @@ public class DeleteServlet extends HttpServlet {
 	}
 
 }
+*/

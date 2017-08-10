@@ -71,7 +71,7 @@
 	<body>
       <div class="container">
 	         <jsp:include page="common/head.jsp"></jsp:include>
-	         <jsp:include page="<%=mainPage %>"></jsp:include>
+	         <jsp:include page="<%=mainPage%>"></jsp:include>
       </div>
 	</body>
 </html>
