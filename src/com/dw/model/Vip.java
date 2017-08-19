@@ -1,5 +1,7 @@
 package com.dw.model;
 
+
+
 public class Vip {
     // 用户的标识
        private String openId;
