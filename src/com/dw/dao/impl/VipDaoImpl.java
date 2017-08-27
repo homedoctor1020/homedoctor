@@ -83,9 +83,10 @@ public class VipDaoImpl implements VipDao {
 	public boolean addVip(Vip vip) {
 		// Student(stId,stName,stSex,stAge,stTel,stDept,stAddress)
 		boolean flag = false;
+		PreparedStatement psmt=null;
 		String sql = "insert  IGNORE into vip(openID,nickname,subscribe,subscribeTime,sex,country,province,city,headimgurl) values(?,?,?,?,?,?,?,?,?)";
 		try {
-			PreparedStatement psmt = conn.prepareStatement(sql);
+			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vip.getOpenId());
 			psmt.setString(2, vip.getNickname());
 			psmt.setInt(3, vip.getSubscribe());
@@ -103,73 +104,111 @@ public class VipDaoImpl implements VipDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally
+		    {
+		      if(psmt!= null)
+			try {
+			    psmt.close();
+			} catch (SQLException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			} 		
+		      if(conn!= null)
+			try {
+			    conn.close();
+			} catch (SQLException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			} 
+		    }	
 		return flag;
 	}
-
-	/**
-	 * 删除学生信息
-	 * 
-	 * @param id
-	 * @return flag
-	 *//*
-	public boolean delStudent(int id) {
-		boolean flag = false;
-		String sql = "delete from Student2 where stId=?";
-		try {
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, id);
-			if (psmt.executeUpdate() > 0) {
-				flag = true;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return flag;
+	
+	@Override
+	public String getNicknameByopenid(String openid) {
+	// TODO Auto-generated method stub
+	    String sql="select nickname from vip where openID=?";
+	    String nickname=null;
+	    PreparedStatement psmt =null;
+	    try {
+	    	psmt = conn.prepareStatement(sql);
+	    	psmt.setString(1, openid);
+	    	
+	    	ResultSet rs = psmt.executeQuery();
+	    	while (rs.next()) {
+	    		 nickname = rs.getString("nickname");
+	    	}
+	    } catch (SQLException e) {
+	    	// TODO Auto-generated catch block
+	    	e.printStackTrace();
+	    }finally
+	    {
+		      if(psmt!= null)
+			try {
+			    psmt.close();
+			} catch (SQLException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			} 		
+		      if(conn!= null)
+			try {
+			    conn.close();
+			} catch (SQLException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			} 
+		    }	
+	    return nickname;
 	}
-
-	*//**
-	 * 更新学生信息
-	 * 
-	 * @param stu
-	 * @return flag
-	 *//*
-	public boolean updateStudent(Student stu) {
-		boolean flag = false;
-		String sql = "update Student2 set stName=?,stSex=?,stAge=?,stTel=?,stDept=?,stAddress=? where stId=? ";
-		try {
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setString(1, stu.getStName());
-			psmt.setString(2, stu.getStSex());
-			psmt.setString(3, stu.getStAge());
-			psmt.setLong(4, stu.getStTel());
-			psmt.setString(5, stu.getStDept());
-			psmt.setString(6, stu.getStAddress());
-			psmt.setInt(7, stu.getStId());
-
-			int i = psmt.executeUpdate();
-			if (i == 1) {
-				flag = true;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return flag;
+@Override
+public String getImageByopenid(String openid)  {
+// TODO Auto-generated method stub
+String sql="select headimgurl from vip where openID=?";
+String image=null;
+PreparedStatement psmt =null;
+try {
+	psmt = conn.prepareStatement(sql);
+	psmt.setString(1, openid);
+	
+	ResultSet rs = psmt.executeQuery();
+	while (rs.next()) {
+		 image = rs.getString("headimgurl");
 	}
-*/
+} catch (SQLException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}finally
+{
+    if(psmt!= null)
+	try {
+	    psmt.close();
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	} 		
+    if(conn!= null)
+	try {
+	    conn.close();
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	} 
+  }	
+return image;
+}
 	/**
 	 * 查询全体学生信息
 	 * 
 	 * @return list
+	 * @throws SQLException 
 	 */
 	@SuppressWarnings("unchecked")
-	public List vipSelect() {
+	public List vipSelect()  {
 		List list = new ArrayList();
 		String sql = "select * from vip";
+		Statement smt=null;
 		try {
-			Statement smt = conn.createStatement();
+			smt = conn.createStatement();
 			ResultSet rs = smt.executeQuery(sql);
 			// Student(stId,stName,stSex,stAge,stTel,stDept,stAddress)
 			while (rs.next()) {
@@ -184,38 +223,24 @@ public class VipDaoImpl implements VipDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally
+		    {
+		      if(smt!= null)
+			try {
+			    smt.close();
+			} catch (SQLException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			} 		
+		      if(conn!= null)
+			try {
+			    conn.close();
+			} catch (SQLException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			} 
+		    }	
 		return list;
 	}
-
 	
-
-	/*@Override
-	public Vip findVipById(String id) {
-		// TODO Auto-generated method stub
-		Student student = null;
-		String sql = "select * from Student2 where stId=?";
-
-		PreparedStatement pstmt;
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-				student = new Student();
-				student.setStId(Integer.parseInt(rs.getString("stId")));
-				student.setStName(rs.getString("stName"));
-				student.setStSex(rs.getString("stSex"));
-				student.setStAge(rs.getString("stAge"));
-				student.setStDept(rs.getString("stDept"));
-				student.setStAddress(rs.getString("stAddress"));
-				student.setStTel(Long.parseLong(rs.getString("stTel")));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return student;
-	}
-*/
 }

@@ -30,6 +30,8 @@ public class UploadHandleServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+	response.setHeader("Access-Control-Allow-Origin", "*");
+	    response.setContentType("text/html;charset=UTF-8");
                 //得到上传文件的保存目录，将上传的文件存放于WEB-INF目录下，不允许外界直接访问，保证上传文件的安全
                 String savePath = this.getServletContext().getRealPath("/WEB-INF/upload");
                 //上传时生成的临时文件保存目录

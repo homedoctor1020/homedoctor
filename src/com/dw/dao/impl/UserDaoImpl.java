@@ -16,11 +16,12 @@ import com.dw.util.DbConn;
 public class UserDaoImpl implements UserDao {
 	private Connection conn = DbConn.getConn();
 	//登陆用户验证
-	  public boolean isLogin(User user){
+	  public boolean isLogin(User user) {
 		  boolean flag=false;
+		  PreparedStatement pmst=null;
 		  String sql="select * from t_manager where username=? and password=?";
 		  try {
-			PreparedStatement pmst=conn.prepareStatement(sql);
+			pmst=conn.prepareStatement(sql);
 			pmst.setString(1, user.getUsername());//对传过来的用户名和密码进行封装
 			pmst.setString(2, user.getPassword());
 			ResultSet rs=pmst.executeQuery();
@@ -30,7 +31,23 @@ public class UserDaoImpl implements UserDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally
+		    {
+		      if(pmst!= null)
+			try {
+			    pmst.close();
+			} catch (SQLException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			} 		
+		      if(conn!= null)
+			try {
+			    conn.close();
+			} catch (SQLException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			} 
+		    }
 		return flag;	  
 	  }
 
@@ -38,20 +55,38 @@ public class UserDaoImpl implements UserDao {
 		  * 修改用户的密码
 		  * @param page
 		  * @return
+		 * @throws SQLException 
 		  */
 		
-		public int updateUserPassWord(User  user) {
+		public int updateUserPassWord(User  user)  {
 			int a=0;
 			String sql = "update t_manager set password=? where username=?";
+			PreparedStatement pstmt=null;
 			try {
-				PreparedStatement pstmt = conn.prepareStatement(sql);
+				 pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, user.getPassword());
 				pstmt.setString(2, user.getUsername());
 				a= pstmt.executeUpdate();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
+			}finally
+			    {
+			      if(pstmt!= null)
+				try {
+				    pstmt.close();
+				} catch (SQLException e) {
+				    // TODO Auto-generated catch block
+				    e.printStackTrace();
+				} 		
+			      if(conn!= null)
+				try {
+				    conn.close();
+				} catch (SQLException e) {
+				    // TODO Auto-generated catch block
+				    e.printStackTrace();
+				} 
+			    }
 			return a;
 		}
 }

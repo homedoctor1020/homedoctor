@@ -53,15 +53,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td align="center">
 					<strong>城市</strong>
 				</td>
-				<!-- <td align="center">
-					<strong>电话</strong>
-				</td>
-				<td align="center">
-					<strong>微信</strong>
-				</td>
-				<td align="center">
-					<strong>地址</strong>
-				</td> -->
 				<td align="center" >
 					<strong>执行操作</strong>
 				</td>
@@ -91,18 +82,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td>
 						<c:out value="${vip.city}" />
 					</td>
-					<%-- <td>
-						<c:out value="${student.stTel}" />
-					</td>
 					<td>
-						<c:out value="${student.stDept}" />
-					</td>
-					<td>
-						<c:out value="${student.stAddress}" />
-					</td> --%>
-					<td>
-						<a href="stdelete?id=${vip.openId}" class="btn btn-danger">删除</a>
-						<a href="pre?method=updateStudent&id=${vip.openId}" class="btn btn-primary">更新</a>
+						<a href="pre?method=upload&openid=${vip.openId}" class="btn btn-primary">上传病历</a>
 					</td>
 				</tr>
 			</c:forEach>

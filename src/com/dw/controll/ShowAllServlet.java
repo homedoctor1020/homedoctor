@@ -6,6 +6,8 @@ package com.dw.controll;
  */
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -32,7 +34,10 @@ public class ShowAllServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		VipDaoImpl dao = new VipDaoImpl();
-		List list = dao.vipSelect();
+		List list=null;
+		
+		    list = dao.vipSelect();
+		
 		String mainPage="displaystudent.jsp";
 		request.setAttribute("list", list);
 		request.setAttribute("mainPage", mainPage);

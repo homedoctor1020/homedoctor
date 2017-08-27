@@ -4,6 +4,7 @@ package com.dw.controll;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -64,17 +65,19 @@ public class LoginServlet extends HttpServlet {
 		User user=new User(username,password);
 		UserDaoImpl usersdao=new UserDaoImpl();
 		session.setAttribute("username", username);	
-		if(usersdao.isLogin(user)){
-			if("remember-me".equals(remember)){
-				rememberMe(username,password,resp);
-			}
-			resp.sendRedirect("main.jsp");
-		}
-		else{
-			req.setAttribute("error", "用户名或密码错误!");
-			RequestDispatcher requestdispatcher=req.getRequestDispatcher("login.jsp");
-			requestdispatcher.forward(req, resp);
-		}
+		
+		    if(usersdao.isLogin(user)){
+		    	if("remember-me".equals(remember)){
+		    		rememberMe(username,password,resp);
+		    	}
+		    	resp.sendRedirect("main.jsp");
+		    }
+		    else{
+		    	req.setAttribute("error", "用户名或密码错误!");
+		    	RequestDispatcher requestdispatcher=req.getRequestDispatcher("login.jsp");
+		    	requestdispatcher.forward(req, resp);
+		    }
+		
 		
 	}
 

@@ -1,5 +1,7 @@
 package com.dw.dao;
 
+import java.sql.SQLException;
+
 /**
  * 数据访问层，学生信息CRUD操作
  * @author DY1101shaoyuxian
@@ -55,9 +57,10 @@ public interface VipDao {
 	 * 查询全体学生信息
 	 * 
 	 * @return list
+	 * @throws SQLException 
 	 */
 	@SuppressWarnings("unchecked")
-	public List vipSelect();
+	public List vipSelect() throws SQLException;
 	/**
 	 * 根据ID查询学生信息
 	 * 
@@ -65,4 +68,18 @@ public interface VipDao {
 	 *//*
 	 public Vip findVipById(String id); */
 
+	/**
+	 * 返回用户的头像
+	 * @param openid
+	 * @return
+	 * @throws SQLException 
+	 */
+	public String getImageByopenid(String openid);
+
+	/**
+	 * 返回用户的昵称
+	 * @param openid
+	 * @return
+	 */
+	public String getNicknameByopenid(String openid);
 }

@@ -38,7 +38,7 @@
 							<li><a href="showAllStudents"><i class="icon-book"></i>&nbsp;患者信息维护 </a></li>
 							<li><a href="showAllYuyues"><i class="icon-book"></i>&nbsp;查看预约信息 </a></li>
 							<li><a href="pre?method=preupdatetepwd"><i class=" icon-cog"></i>&nbsp;修改密码</a></li>
-							<!-- <li><a href="upload"><i class=" icon-cog"></i>&nbsp;上传文件</a></li> -->
+							<li><a href="pre?method=lookbingli"><i class=" icon-cog"></i>&nbsp;查看病历记录</a></li>
 							<li><a onclick="check()"><i class="icon-user"></i>&nbsp;退出系统</a></li>
 						</ul>
 					</div>

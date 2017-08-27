@@ -1,6 +1,10 @@
-/*package com.dw.controll;
+
+
+package com.dw.controll;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,17 +13,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.dw.dao.StudentDao;
-import com.dw.dao.impl.StudentDaoImpl;
+import com.dw.dao.ResourceDao;
+import com.dw.dao.VipDao;
+import com.dw.dao.impl.ResourceDaoImpl;
 import com.dw.dao.impl.UserDaoImpl;
-import com.dw.model.Student;
+import com.dw.dao.impl.VipDaoImpl;
 import com.dw.model.User;
 
-*//**
+/**
  * 逻辑处理及页面跳转
  * @author DY1101shaoyuxian
  * 
- *//*
+ */
 public class PreServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -32,88 +37,122 @@ public class PreServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String method = (String) request.getParameter("method");
-		if ("studentAdd".equals(method)) {
-			studentAdd(request, response);
-		} else if ("updateStudent".equals(method)) {
-			updateStudent(request, response);
+		if ("upload".equals(method)) {
+		    upload(request, response);
+		} else if ("getimage".equals(method)) {
+			getImage(request, response);
+		}else if("getnickname".equals(method)){
+			getNickname(request, response);
+		}else if("lookbingli".equals(method)){
+			lookbingli(request, response);
 		}else if("preupdatetepwd".equals(method)){
 			preupdatetepwd(request, response);
-		}else if(method==null){
-			updatetepwd(request, response);
 		}
+	
 	}
-	*//**
-	 * 添加学生的信息前-实现页面跳转
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 *//*
-	public void studentAdd(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		String mainPage = "studentAdd.jsp";
-		request.setAttribute("mainPage", mainPage);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
-		dispatcher.forward(request, response);
-	}
-	*//**
-	 * 更新学生的信息前-先查询出用户的信息，并实现页面跳转
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 *//*
-	public void updateStudent(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		StudentDao studao = new StudentDaoImpl();
-		int ids = Integer.parseInt(id);
-		Student student = studao.findStudentByid(ids);
-		request.setAttribute("student", student);
-		String mainPage = "studentUpdate.jsp";
-		request.setAttribute("mainPage", mainPage);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
-		dispatcher.forward(request, response);
-	}
-	*//**
+	/**
 	 * 更改管理员密码-实现页面跳转
 	 * @param request
 	 * @param response
 	 * @throws ServletException
 	 * @throws IOException
-	 *//*
-	public void preupdatetepwd(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		String mainPage = "updatepwd.jsp";
+	 */
+	private void preupdatetepwd(HttpServletRequest request,
+		HttpServletResponse response) throws ServletException, IOException {
+	    String mainPage = "updatepwd.jsp";
+		request.setAttribute("mainPage", mainPage);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
+		dispatcher.forward(request, response);
+	    
+	}
+
+	/**
+	 * 跳转到查看病历界面
+	 * 如果openID不为空，查看对应的openID的用户的病历
+	 * 如果openID为空，查看所有人的病历记录
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	private void lookbingli(HttpServletRequest request,
+		HttpServletResponse response) throws ServletException, IOException {
+	    // TODO Auto-generated method stub
+	    String openid = request.getParameter("openid");
+	    ResourceDao dao= new ResourceDaoImpl();
+	    List list=null;
+	    if(openid!=null){
+		list=dao.findByOpenid(openid);
+	    }else{
+		list=dao.selectAll();
+	    }
+	    request.setAttribute("list", list);
+	          request.setAttribute("openid", openid);
+		    String mainPage = "listbingli.jsp";
+			request.setAttribute("mainPage", mainPage);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
+			dispatcher.forward(request, response);
+	}
+/**
+ * 返回用户的微信昵称
+ * @param request
+ * @param response
+ * @throws IOException
+ */
+	private void getNickname(HttpServletRequest request,
+		HttpServletResponse response) throws IOException {
+	    // TODO Auto-generated method stub
+	    
+	    String openid = request.getParameter("openid");
+	    PrintWriter write=response.getWriter();
+	    VipDao dao=new VipDaoImpl();
+	    String nickname=dao.getNicknameByopenid(openid);
+	    if(nickname!=null){
+		 write.write(nickname);
+	    }else{
+		write.write("");
+	    }
+	   
+	    write.flush();
+	    write.close();
+	    
+	}
+/**
+ * 返回用户的头像地址
+ * @param request
+ * @param response
+ * @throws IOException
+ */
+	private void getImage(HttpServletRequest request,
+		HttpServletResponse response) throws IOException {
+	    // TODO Auto-generated method stub
+	    String openid = request.getParameter("openid");
+	    VipDao dao=new VipDaoImpl();
+	    PrintWriter write=response.getWriter();
+	    String image =dao.getImageByopenid(openid);
+	    if(image!=null){
+	    write.write(image);
+	    }else{
+		write.write("");
+	    }
+	    write.flush();
+	    write.close();
+	}
+/**
+ * 跳转到上传界面
+ * @param request
+ * @param response
+ * @throws ServletException
+ * @throws IOException
+ */
+	public void upload(HttpServletRequest request,
+		HttpServletResponse response) throws ServletException, IOException {
+	    String openid = request.getParameter("openid");
+	    request.setAttribute("openid", openid);
+	    String mainPage = "upload.jsp";
 		request.setAttribute("mainPage", mainPage);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
 		dispatcher.forward(request, response);
 	}
-	*//**
-	 * 更改管理员密码
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 *//*
-	public void updatetepwd(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		 HttpSession session=request.getSession();
-		 String username=(String)session.getAttribute("username");
-		 String repassword=request.getParameter("repassword");
-		 User user=new User(username,repassword);
-		 UserDaoImpl userdao=new UserDaoImpl();
-		 int a=userdao.updateUserPassWord(user);
-		 if(a!=0){
-			 String mainPage = "updatepwdSuccess.jsp";
-			 request.setAttribute("mainPage", mainPage);
-		 }else{
-			 request.setAttribute("error", "更新失败");
-		 }
-		    RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
-			dispatcher.forward(request, response);
-	}
-	
 	
 }
-*/
