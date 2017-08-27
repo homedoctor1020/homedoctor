@@ -60,7 +60,7 @@ public interface VipDao {
 	 * @throws SQLException 
 	 */
 	@SuppressWarnings("unchecked")
-	public List vipSelect() throws SQLException;
+	public List vipSelect() ;
 	/**
 	 * 根据ID查询学生信息
 	 * 
