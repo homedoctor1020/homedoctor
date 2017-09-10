@@ -11,6 +11,8 @@
 	<head>
 		<base href="<%=basePath%>">
 		<title>学生信息管理系统主界面</title>
+		<link rel="icon" href="<%=request.getContextPath()%>/images/favicon.ico"   type="image/x-icon"/>
+<link rel="shortcut icon" type="image/x-icon" href="<%=request.getContextPath()%>/images/favicon.ico" media="screen" />
 	</head>
 
 	<body>
@@ -21,10 +23,16 @@
 						<img src="${pageContext.request.contextPath}/images/logo.png" />
 					</div><br/>
 					<div class="headRight">
+					<div style="float: left">
 						欢迎管理员：
 						<font color="red"><%=session.getAttribute("username")%></font>&nbsp;&nbsp;&nbsp;
 						 <i class="icon-time"></i>&nbsp;&nbsp;<font id="today"></font>
+						</div>
+						<div style="float:right">
+						<a href="main.jsp" class="btn btn-success">返回主菜单</a>
+						</div> 
 					</div>
+					
 				</div>
 			</div>
 		</div> 

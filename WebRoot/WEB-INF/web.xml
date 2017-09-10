@@ -189,4 +189,28 @@
     <servlet-mapping>
         <servlet-name>RefreshVip</servlet-name>
         <url-pattern>/refreshVip</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>OAuthAPIServlet</servlet-name>
+        <servlet-class>com.weixin.OAuth.OAuthAPIServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OAuthAPIServlet</servlet-name>
+        <url-pattern>/OAuthAPIServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>YuLanPDF</servlet-name>
+        <servlet-class>com.weixin.servlet.YuLan_wx</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>YuLanPDF</servlet-name>
+        <url-pattern>/displayPDF</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteBingliServlet</servlet-name>
+        <servlet-class>com.dw.controll.DeleteBingliServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteBingliServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
     </servlet-mapping></web-app>

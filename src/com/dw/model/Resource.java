@@ -2,7 +2,15 @@ package com.dw.model;
 
 public class Resource {
  private String openid;
- private String originName;
+ private String headimgUrl;
+ public String getHeadimgUrl() {
+    return headimgUrl;
+}
+
+public void setHeadimgUrl(String headimgUrl) {
+    this.headimgUrl = headimgUrl;
+}
+private String originName;
  private String newfileName;
  private String size;
  private int  type;

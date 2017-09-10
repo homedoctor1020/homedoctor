@@ -143,5 +143,76 @@ public class ResourceDaoImpl implements ResourceDao {
 	    }
 	return list;
     }
+    @Override
+    public boolean delete(String openid, String filename) {
+        // TODO Auto-generated method stub
+	String sql="delete from resource where openId=? and newfilename=?";
+	PreparedStatement psmt=null;
+	boolean flag=false;
+	try {
+		 psmt = conn.prepareStatement(sql);
+		psmt.setString(1, openid);
+		psmt.setString(2, filename);
+		int i = psmt.executeUpdate();
+		if (i == 1) {
+			flag = true;
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally
+	    {
+	      if(psmt!= null)
+		try {
+		    psmt.close();
+		} catch (SQLException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		} 		
+	      if(conn!= null)
+		try {
+		    conn.close();
+		} catch (SQLException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		} 
+	    }
+	return flag;
+    }
+    @Override
+    public String findfileByOpenid(String openid, String filetype) {
+	String filename=null;
+	PreparedStatement psmt=null;
+	String sql="select newfilename from resource where openId=? and type=? ORDER BY createTime desc limit 1 ";
+	try {
+		psmt = conn.prepareStatement(sql);
+		psmt.setString(1, openid);
+		psmt.setInt(2, Integer.parseInt(filetype));
+		ResultSet rs = psmt.executeQuery();
+		while (rs.next()) {
+		    filename=rs.getString("newfilename");
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally
+	    {
+	      if(psmt!= null)
+		try {
+		    psmt.close();
+		} catch (SQLException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		} 		
+	      if(conn!= null)
+		try {
+		    conn.close();
+		} catch (SQLException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		} 
+	    }
+	return filename;
+    }
 
 }

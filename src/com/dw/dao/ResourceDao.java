@@ -34,4 +34,22 @@ public interface ResourceDao {
      * @throws SQLException 
      */
     public List findByOpenid(String openid);
+
+    /**
+     * 删除某一报告文件
+     * @param openid
+     * @param filename
+     * @return
+     */
+    public boolean delete(String openid, String filename);
+
+    /**
+     * 返回指定类型的报告
+     * 1 检查报告
+     * 2 健康方案
+     * 3 就诊记录
+     * @param openid
+     * @return
+     */
+    public String findfileByOpenid(String openid,String filetype);
 }

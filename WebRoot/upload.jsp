@@ -23,9 +23,9 @@
 			<div class="col-sm-5 col-lg-offset-1">
 				<select name="bingli_type">
 					<option value="">请选择</option>
-					<option title="类别1" value="1">类别1</option>
-					<option title="类别2" value="2">类别2</option>
-					<option title="类别3" value="3">类别3</option>
+					<option title="类别1" value="1">检查报告</option>
+					<option title="类别2" value="2">健康方案</option>
+					<option title="类别3" value="3">就诊记录</option>
 
 				</select> <br /> 
 				<br /> 

@@ -22,7 +22,7 @@ public class MakePomFromJars {
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		Element dependencys = new DOMElement("dependencys");
 		//jar包的所在路徑
-		File dir = new File("I:/workspace/StudentManagerWeb/WebRoot/WEB-INF/lib");
+		File dir = new File("I:/workspace/java获取微信用户信息源码/OAuth2.0网页授权代码-20/OAUTH/WebRoot/WEB-INF/lib");
 //		/Users/crossnote/Documents/work/workspaces/maven_demo/src/resources/webapp/WEB-INF/lib
 		for (File jar : dir.listFiles()) {
 			JarInputStream jis = new JarInputStream(new FileInputStream(jar));

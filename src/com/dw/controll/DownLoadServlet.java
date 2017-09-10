@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,10 +29,10 @@ public class DownLoadServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		//得到要下载的文件名
-        String fileName = request.getParameter("filename");  //23239283-92489-阿凡达.avi
+        String fileName = request.getParameter("filename");  //
         String openid=request.getParameter("openid");
-        //上传的文件都是保存在/WEB-INF/upload目录下的子目录当中
-        String fileSaveRootPath=this.getServletContext().getRealPath("/WEB-INF/upload");
+        //上传的文件都是保存在/upload目录下的子目录当中
+        String fileSaveRootPath=this.getServletContext().getRealPath("/upload");
        //通过文件名找出文件的所在目录
         String path = fileSaveRootPath+ "\\" +openid;
         //得到要下载的文件
@@ -41,7 +42,10 @@ public class DownLoadServlet extends HttpServlet {
         //如果文件不存在
         if(!file.exists()){
             request.setAttribute("message", "您要下载的资源已被删除！！");
-            request.getRequestDispatcher("/message.jsp").forward(request, response);
+            String mainPage = "message.jsp";
+		request.setAttribute("mainPage", mainPage);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
+		dispatcher.forward(request, response);
             return;
         }
         /*//处理文件名

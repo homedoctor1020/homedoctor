@@ -46,7 +46,14 @@ public class UploadServlet extends HttpServlet {
       throws ServletException, IOException {
       String openid = request.getParameter("openid");
       Resource re=new Resource();
-      String savePath = this.getServletContext().getRealPath("/WEB-INF/upload/"+openid);
+      //path=webapps/upload
+      String path = getServletContext().getRealPath("/"); 
+       path=path.replaceAll("Doctor1020", "");
+       path=path.substring(0, path.length()-1);
+      System.out.println("path="+path);
+      //将上传的文件保存至webapps/upload/${openid}目录下
+      String savePath = path+"//upload//"+openid;
+	      //this.getServletContext().getRealPath("/upload/"+openid).replaceAll("//Doctor1020", "");
       //上传时生成的临时文件保存目录
       String tempPath = this.getServletContext().getRealPath("/WEB-INF/temp");
     try {

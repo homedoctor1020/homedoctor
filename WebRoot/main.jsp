@@ -19,7 +19,9 @@
 <html>
 	<head>
 		<base href="<%=basePath%>">
-		<title>学生信息管理系统主界面</title>
+		<title>主界面</title>
+		<link rel="icon" href="<%=request.getContextPath()%>/images/favicon.ico"   type="image/x-icon"/>
+<link rel="shortcut icon" type="image/x-icon" href="<%=request.getContextPath()%>/images/favicon.ico" media="screen" />
 		<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.css" rel="stylesheet">
 		<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 		<script src="${pageContext.request.contextPath}/bootstrap/js/jQuery.js"></script>
@@ -66,6 +68,7 @@
 	}
 	window.setInterval("setDateTime()", 1000);
 </script>
+
 	</head>
 
 	<body>

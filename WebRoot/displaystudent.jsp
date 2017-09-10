@@ -95,6 +95,7 @@
 					<td>
 						<%-- <a href="stdelete?id=${vip.openId}" class="btn btn-danger">删除</a> --%>
 						<a href="pre?method=upload&openid=${vip.openId}" class="btn btn-primary">上传病历</a>
+						<a href="pre?method=lookbingli&openid=${vip.openId}" class="btn btn-info">查看病历</a>
 					</td>
 				</tr>
 			</c:forEach>

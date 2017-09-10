@@ -58,6 +58,7 @@ public class CommonUtil {
             SSLSocketFactory ssf = sslContext.getSocketFactory();
 
             URL url = new URL(requestUrl);
+            System.out.println("请求access_token:"+requestUrl);
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             conn.setSSLSocketFactory(ssf);
             
@@ -97,6 +98,7 @@ public class CommonUtil {
         } catch (Exception e) {
             log.error("https请求异常：{}", e);
         }
+        System.out.println("请求得到的access_token:"+jsonObject);
         return jsonObject;
     }
     /**
@@ -107,20 +109,23 @@ public  static Token getToken(){
     Token token = new Token();
     // 发起GET请求获取凭证
     JSONObject jsonObject = httpsRequest(token_url, "GET", null);
-    if (null != jsonObject) {
-        try {
+    try {
+    if ((null != jsonObject)&&(jsonObject.getString("access_token")!=null)) {
+        
             token = new Token();
             token.setAccess_token(jsonObject.getString("access_token"));
             token.setExpiresin(jsonObject.getInt("expires_in"));
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
             String time = format.format(new Date());
             token.setTime(time);
+    } 
         } catch (JSONException e) {
             token = null;
+        	System.out.println("获取token失败 errcode:{} errmsg:{}"+jsonObject.getInt("errcode")+jsonObject.getString("errmsg"));
             // 获取token失败
-            log.error("获取token失败 errcode:{} errmsg:{}", jsonObject.getInt("errcode"), jsonObject.getString("errmsg"));
+            //log.error("获取token失败 errcode:{} errmsg:{}", jsonObject.getInt("errcode"), jsonObject.getString("errmsg"));
         }
-    }
+   
     return token;
   
     
